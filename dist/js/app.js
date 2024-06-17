@@ -143,6 +143,8 @@
                         } else {
                             spollerTitle.classList.add("_spoller-active");
                             spollerItem.open = true;
+                            const imageWrap = spollerItem.querySelector(".modules__spoller-image-wrap");
+                            if (imageWrap) imageWrap.classList.add("active");
                         }
                     } else {
                         spollerTitle.setAttribute("tabindex", "-1");
@@ -173,14 +175,14 @@
                                     spollerBlock.open = false;
                                 }), spollerSpeed);
                                 spollerTitle.classList.remove("_spoller-active");
+                                const imageWrap = spollerBlock.querySelector(".modules__spoller-image-wrap");
+                                if (imageWrap) imageWrap.classList.remove("active");
                             }
                             _slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
-                            const allImageWraps = spollersBlock.querySelectorAll(".modules__spoller-image-wrap");
-                            allImageWraps.forEach((wrap => {
-                                wrap.classList.remove("active");
-                            }));
-                            const imageWrap = spollerBlock.querySelector(".modules__spoller-image-wrap");
-                            if (imageWrap && spollerBlock.open) imageWrap.classList.add("active");
+                            if (spollerBlock.open) {
+                                const imageWrap = spollerBlock.querySelector(".modules__spoller-image-wrap");
+                                if (imageWrap) imageWrap.classList.add("active");
+                            }
                             if (scrollSpoller && spollerTitle.classList.contains("_spoller-active")) {
                                 const scrollSpollerValue = spollerBlock.dataset.spollerScroll;
                                 const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
